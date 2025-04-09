@@ -6,6 +6,6 @@ import (
 )
 
 func main() {
-	name := readinputs.ReadStringInput()
+	name := readinputs.ReadStringInput("What is your name")
 	fmt.Printf("Hello %v", name)
 }
