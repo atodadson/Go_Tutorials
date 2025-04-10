@@ -21,6 +21,6 @@ func ReadStringInput(message string) string {
 	return input
 }
 
-func ReadTxt(filepath string) string {
-	file = 
-}
+// func ReadTxt(filepath string) string {
+// 	return os.FileInfo(filepath)
+// }
