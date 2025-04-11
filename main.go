@@ -1,27 +1,28 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
-	"os"
+	"go_tuts/readinputs"
 )
 
 func main() {
-	// name := readinputs.ReadLine("What is your name")
-	// fmt.Printf("Hello %v", name)
+	name, _ := readinputs.ReadLine("What is your name")
+	fmt.Printf("Hello %v", name)
 
 	filename := "textfile.txt"
-	file, err := os.OpenFile(filename, os.O_RDONLY, 0666)
+	output, err := readinputs.ReadTxt(filename)
 	if err != nil {
-		panic(err)
+		fmt.Println(err)
+	} else {
+		fmt.Printf("Type: %T, Value: %v", output, output)
 	}
-	reader := bufio.NewReader(file)
-	for {
-		line, err := reader.ReadString('\n')
-		fmt.Printf("> %s", line)
-		if err != nil {
-			return
-		}
 
-	}
+	// for {
+	// 	line, err := reader.ReadString('\n')
+	// 	fmt.Printf("> %s", line)
+	// 	if err != nil {
+	// 		return
+	// 	}
+
+	// }
 }
