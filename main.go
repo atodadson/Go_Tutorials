@@ -17,12 +17,4 @@ func main() {
 		fmt.Printf("Type: %T, Value: %v", output, output)
 	}
 
-	// for {
-	// 	line, err := reader.ReadString('\n')
-	// 	fmt.Printf("> %s", line)
-	// 	if err != nil {
-	// 		return
-	// 	}
-
-	// }
 }

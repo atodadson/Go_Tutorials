@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"go_tuts/readinputs"
 	"os"
 )
 
@@ -56,12 +57,17 @@ func main() {
 
 	var group2 Group
 
-	filename := "myjson.json"
-	jsonByte, _ := os.ReadFile(filename)
+	// filename := "myjson.json"
+	// jsonByte, _ := os.ReadFile(filename)
 
-	json.Unmarshal(jsonByte, &group2)
-	group2.Name = "Group II"
+	// json.Unmarshal(jsonByte, &group2)
+	// group2.Name = "Group II"
+	// fmt.Printf("Group2: %+v\n", group2)
+
+	// fmt.Println(string(indentByteList))
+
+	jsonName := "myjson.json"
+	_ = readinputs.ReadJson(jsonName, group2)
 	fmt.Printf("Group2: %+v\n", group2)
 
-	fmt.Println(string(indentByteList))
 }
