@@ -1,8 +1,8 @@
 package main
 
 import (
+	"context"
 	"fmt"
-	"os"
 	"time"
 )
 
@@ -53,24 +53,41 @@ func main() {
 	// 	}
 	// }
 
-	ch := make(chan string)
-	go func() {
-		time.Sleep(2 * time.Second)
-		ch <- fmt.Sprintf("hello ")
-	}()
+	// ch := make(chan string)
+	// go func() {
+	// 	time.Sleep(2 * time.Second)
+	// 	ch <- fmt.Sprintf("hello ")
+	// }()
+
+	// go func() {
+	// 	time.Sleep(2 * time.Second)
+	// 	ch <- fmt.Sprintf("World")
+	// }()
+
+	// for {
+	// 	select {
+	// 	case v := <-ch:
+	// 		fmt.Printf("%s\n", v)
+	// 	case <-time.After(3 * time.Second):
+	// 		fmt.Println("Waited for 3 seconds")
+	// 		os.Exit(0) // exiting the program after 3 seconds wait
+	// 	}
+	// }
+
+	// Using Go Contexts
+	ctx, _ := context.WithTimeout(context.Background(), 3*time.Second)
 
 	go func() {
 		time.Sleep(2 * time.Second)
-		ch <- fmt.Sprintf("World")
+		fmt.Println("Task finished")
 	}()
 
-	for {
-		select {
-		case v := <-ch:
-			fmt.Printf("%s\n", v)
-		case <-time.After(3 * time.Second):
-			fmt.Println("Waited for 3 seconds")
-			os.Exit(0)
+	select {
+	case <-ctx.Done():
+		fmt.Println("Context Done")
+		err := ctx.Err()
+		if err != nil {
+			fmt.Printf("err: %s", err)
 		}
 	}
 }
