@@ -1,0 +1,15 @@
+{
+	"Name": "Group1",
+	"Persons": [
+		{
+			"name": "Ato Kofi",
+			"Age": 19,
+			"Height": 172
+		},
+		{
+			"name": "Jon Snow",
+			"Age": 23,
+			"Height": 191
+		}
+	]
+}
