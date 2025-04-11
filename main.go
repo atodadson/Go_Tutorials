@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"go_tuts/readinputs"
+	"os"
 )
 
 func main() {
@@ -17,4 +18,8 @@ func main() {
 		fmt.Printf("Type: %T, Value: %v", output, output)
 	}
 
+	// System arguments
+	// Arguments added terminal command when running file
+	programName, args := os.Args[0], os.Args[1:]
+	fmt.Printf("Args 1: %v, Args: %v", programName, args)
 }
