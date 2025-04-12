@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"os"
 	"strconv"
 	"time"
 )
@@ -28,8 +29,18 @@ func main() {
 	go oddNumbers(ch)
 	go evenNumbers(ch)
 
-	for rec := range ch {
-		num, str := rec[0], rec[1]
-		fmt.Printf("this is %v:{%v}\n", str, num)
+	// for rec := range ch {
+	// 	num, str := rec[0], rec[1]
+	// 	fmt.Printf("this is %v:{%v}\n", str, num)
+	// }
+
+	for {
+		select {
+		case v := <-ch:
+			fmt.Printf("This is V: %v \n", v)
+		case <-time.After(300 * time.Millisecond):
+			fmt.Println("Waited too long for response")
+			os.Exit(0)
+		}
 	}
 }
