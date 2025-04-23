@@ -15,13 +15,26 @@ import (
 // 	return r
 // }
 
+// // Gin Route with Parameter
+// func router() *gin.Engine {
+// 	r := gin.Default()
+// 	r.GET("/:name", func(c *gin.Context) {
+// 		user := c.Param("name")
+// 		c.String(200, fmt.Sprintf("hello, %s", user))
+// 	})
+// 	return r
+// }
+
 // Gin Route with Parameter
 func router() *gin.Engine {
 	r := gin.Default()
-	r.GET("/:name", func(c *gin.Context) {
-		user := c.Param("name")
-		c.String(200, fmt.Sprintf("hello, %s", user))
-	})
+	userRoute := r.Group("/user")
+	{
+		userRoute.GET("/hello/:name", func(c *gin.Context) {
+			user := c.Param("name")
+			c.String(200, fmt.Sprintf("hello, %s", user))
+		})
+	}
 	return r
 }
 
