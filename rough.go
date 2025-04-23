@@ -2,8 +2,10 @@ package main
 
 import (
 	"fmt"
-	"os"
+	// "go_tuts/readinputs"
+	// "os"
 	"strconv"
+	"strings"
 	"time"
 )
 
@@ -25,22 +27,29 @@ func evenNumbers(c chan []string) {
 }
 
 func main() {
-	ch := make(chan []string)
-	go oddNumbers(ch)
-	go evenNumbers(ch)
+	str := fmt.Sprintf("not \n")
+	fmt.Printf("::::::::::This is %s ::::::::::\n", str)
+	str = strings.TrimSpace(str)
+	fmt.Printf("::::::::::This is %s ::::::::::", str)
+	// ch := make(chan []string)
+	// go oddNumbers(ch)
+	// go evenNumbers(ch)
+	// fmt.Println(readinputs.ReadTxt("APIKEY"))
+	// go writeAPI()
 
 	// for rec := range ch {
 	// 	num, str := rec[0], rec[1]
 	// 	fmt.Printf("this is %v:{%v}\n", str, num)
 	// }
 
-	for {
-		select {
-		case v := <-ch:
-			fmt.Printf("This is V: %v \n", v)
-		case <-time.After(300 * time.Millisecond):
-			fmt.Println("Waited too long for response")
-			os.Exit(0)
-		}
-	}
+	// for {
+	// 	select {
+	// 	case v := <-ch:
+	// 		fmt.Printf("This is V: %v \n", v)
+	// 	case <-time.After(300 * time.Millisecond):
+	// 		fmt.Println("Waited too long for response")
+	// 		os.Exit(0)
+	// 	}
+	// }
+
 }
