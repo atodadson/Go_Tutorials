@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"net/http"
 
 	"github.com/gin-gonic/gin"
 )
@@ -25,14 +26,41 @@ import (
 // 	return r
 // }
 
-// Gin Route with Parameter
+// // Grouping Routes together
+// func router() *gin.Engine {
+// 	r := gin.Default()
+// 	userRoute := r.Group("/user")
+// 	{
+// 		userRoute.GET("/hello/:name", func(c *gin.Context) {
+// 			user := c.Param("name")
+// 			c.String(200, fmt.Sprintf("hello, %s", user))
+// 		})
+// 	}
+// 	return r
+// }
+
+type Message struct {
+	// Json tag to de-serialize json body
+	Name string `json:"name"`
+}
+
 func router() *gin.Engine {
 	r := gin.Default()
 	userRoute := r.Group("/user")
 	{
 		userRoute.GET("/hello/:name", func(c *gin.Context) {
 			user := c.Param("name")
-			c.String(200, fmt.Sprintf("hello, %s", user))
+			response := fmt.Sprintf("hello, %s", user)
+			c.String(http.StatusOK, response)
+		})
+		userRoute.POST("/post", func(c *gin.Context) {
+			body := Message{}
+			if err := c.BindJSON(&body); err != nil {
+				c.AbortWithError(http.StatusBadRequest, err)
+				return
+			}
+			fmt.Println(body)
+			c.JSON(http.StatusAccepted, &body)
 		})
 	}
 	return r
