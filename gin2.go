@@ -9,7 +9,10 @@ import (
 
 type Message struct {
 	// json tag to deserialize json body
-	Name string `json:"name"`
+	Name  string `json:"name"`
+	Email string `json:"email" binding:"required,email"`
+	// binding helps with post data validation
+	// required to ensure it's required and email to specify it's an email
 }
 
 // Binding custom types to the body of post request
