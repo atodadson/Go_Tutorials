@@ -1,0 +1,9 @@
+{
+    "name": "Ato Kay",
+    "age": 34,
+    "address": {
+        "country": "Ghana",
+        "city": "Accra",
+        "street": "Mango Road", "house_number": "A23-T5"
+    }
+}
